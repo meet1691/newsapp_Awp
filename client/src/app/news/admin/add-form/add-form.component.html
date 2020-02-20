@@ -1,0 +1,11 @@
+<form class=" text-center border-light p-5 form-horizontal" [formGroup]="addForm"
+    (ngSubmit)="onSubmit()">
+    <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Add News</h1>
+    <input class="form-control mb-4" id="title" type="text" formControlName="title" placeholder="Title" required=""
+        autofocus="">
+
+    <input class="form-control mb-4" id="type" type="text" formControlName="type" placeholder="Type" required=""
+        autofocus="">
+    <input class="form-control mb-4" id="date" type="date" formControlName="date">
+    <button class="btn btn-lg btn-dark btn-block mb-4" type="submit">Create</button>
+</form>

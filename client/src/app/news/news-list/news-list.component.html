@@ -1,0 +1,27 @@
+<div *ngIf="isAdmin">
+    <app-add-form></app-add-form>
+</div>
+
+<div *ngIf="!this.hideNewsList" class="row">
+    <div *ngFor="let news of this.svcNews.getNewsList()" class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+        <a [routerLink]="['/news', news.id]" routerLinkActive=""><img class="img-thumbnail" src="{{news.image}}"></a>
+            <div class="card-body">
+                <p class="card-text">{{news.title}}</p>
+                <div *ngIf="isAdmin" class="row">
+                    <div class="col-sm-12 my-auto">
+                        <div class="card card-block mx-auto">
+                            <div class="btn-group btn-group-toggle">
+                                <button [routerLink]="['/news/edit', news.id]" type="button"
+                                    class="btn btn-sm btn-secondary">Edit</button>
+                                <button (click)="this.svcNews.remove(news.id)" type="button"
+                                    class="btn btn-sm btn-danger">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <small class="text-muted">{{news.date}}</small>
+            </div>
+        </div>
+    </div>
+</div>

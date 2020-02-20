@@ -1,5 +1,5 @@
-#Client
-##TODO
+# Client
+## TODO
 - [ ] header main footer
 - [ ] visualize news api
 - [ ] JWT auth
