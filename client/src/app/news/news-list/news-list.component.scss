@@ -1,0 +1,32 @@
+.module .collapse, .module .collapsing {
+    height: 9rem;
+  }
+  
+  .module .collapse {
+    position: relative;
+    display: block;
+    overflow: hidden;
+  }
+  
+  .module .collapse:before {
+    content: ' ...';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  
+  .module .collapse.show {
+    height: auto;
+  }
+  
+  .module .collapse.show:before {
+    display: none;
+  }
+  
+  .module a.collapsed:after {
+    content: 'read more..';
+  }
+  
+  .module a:not(.collapsed):after {
+    content: 'read less..';
+  }

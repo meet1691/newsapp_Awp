@@ -2,26 +2,28 @@
     <app-add-form></app-add-form>
 </div>
 
-<div *ngIf="!this.hideNewsList" class="row">
-    <div *ngFor="let news of this.svcNews.getNewsList()" class="col-md-4">
-        <div class="card mb-4 shadow-sm">
-        <a [routerLink]="['/news', news.id]" routerLinkActive=""><img class="img-thumbnail" src="{{news.image}}"></a>
-            <div class="card-body">
-                <p class="card-text">{{news.title}}</p>
-                <div *ngIf="isAdmin" class="row">
-                    <div class="col-sm-12 my-auto">
-                        <div class="card card-block mx-auto">
-                            <div class="btn-group btn-group-toggle">
-                                <button [routerLink]="['/news/edit', news.id]" type="button"
-                                    class="btn btn-sm btn-secondary">Edit</button>
-                                <button (click)="this.svcNews.remove(news.id)" type="button"
-                                    class="btn btn-sm btn-danger">Remove</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <small class="text-muted">{{news.date}}</small>
+<div *ngIf="!this.hideNewsList">
+    <div *ngFor="let news of this.svcNews.getNewsList()" class="row p-2">
+        <div class="col-sm-4">
+            <a [routerLink]="['/news', news.id]" routerLinkActive=""><img class="img-thumbnail"
+                    src="{{news.image}}"></a>
+        </div>
+        <div class="col-sm-4">
+            <div class="module">
+                <h5>{{news.title}}</h5>
+                <p class="collapse " id="collapse{{news.id}}" aria-expanded="false">
+                    {{news.text}}
+                </p>
+                <a role="button" class="collapsed" data-toggle="collapse" href="#collapse{{news.id}}"
+                    aria-expanded="false" aria-controls="collapse{{news.id}}"></a>
             </div>
+        </div>
+        <div class="col-sm-2 small">{{news.date}}</div>
+        <div class="col-sm-2">
+            <button [routerLink]="['/news/edit', news.id]" type="button"
+                class="btn btn-secondary btn-sm btn-block">Edit</button>
+            <button (click)="this.svcNews.remove(news.id)" type="button"
+                class="btn btn-danger btn-sm btn-block">Delete</button>
         </div>
     </div>
 </div>
