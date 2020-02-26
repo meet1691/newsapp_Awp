@@ -14,6 +14,7 @@ import { EditFormComponent } from './news/admin/edit-form/edit-form.component';
 import { AddFormComponent } from './news/admin/add-form/add-form.component';
 import { ViewNewsComponent } from './news/view-news/view-news.component';
 import { NewsListComponent } from './news/news-list/news-list.component';
+import { AdminPanelComponent } from './news/admin/admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -26,13 +27,14 @@ import { NewsListComponent } from './news/news-list/news-list.component';
     EditFormComponent,
     AddFormComponent,
     ViewNewsComponent,
-    NewsListComponent
+    NewsListComponent,
+    AdminPanelComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

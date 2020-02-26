@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsService } from 'src/app/shared/news.service';
+import { SearchNewsService } from 'src/app/shared/search-news.service';
 
 @Component({
   selector: 'app-news-list',
@@ -9,12 +10,16 @@ import { NewsService } from 'src/app/shared/news.service';
 export class NewsListComponent implements OnInit {
 
   private isAdmin: boolean;
+  private search: string;
 
-  constructor(private svcNews: NewsService) {
+  constructor(private svcNews: NewsService,
+    private svcSearch: SearchNewsService
+  ) {
     this.isAdmin = true;
   }
 
   ngOnInit(): void {
+    this.svcSearch.sharedSearch.subscribe(search => this.search = search);
   }
 
 }

@@ -8,7 +8,7 @@ import { NewsService } from '../shared/news.service';
 })
 
 export class NewsComponent implements OnInit {
-
+  
   constructor(private svcNews: NewsService) {
   }
 

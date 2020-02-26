@@ -16,16 +16,16 @@ export class EditFormComponent implements OnInit {
 
   constructor(private svcNews: NewsService,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
-    let id = this.route.snapshot.paramMap.get('id');
+    let id = this.activatedRoute.snapshot.paramMap.get('id');
     this.news = this.svcNews.getNews(Number(id));
     this.initForm()
   }
 
   ngOnInit() {
-    
+
   }
 
   initForm() {
@@ -35,11 +35,11 @@ export class EditFormComponent implements OnInit {
       type: this.news.type,
       title: this.news.title,
       image: this.news.image,
+      text: this.news.text
     })
   }
 
   editNews(news: News) {
-    console.log(news)
     this.svcNews.edit(news)
     this.router.navigate(['/news'])
   }

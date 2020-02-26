@@ -1,11 +1,13 @@
-import {Pipe, PipeTransform} from '@angular/core';
-import {News} from './news.service'
+import { Pipe, PipeTransform } from '@angular/core';
+import { News } from './news.service'
 
 @Pipe({
   name: 'newsFilter'
 })
+
 export class NewsFilterPipe implements PipeTransform {
-  transform(news: News[], search: string = ''): News[] {
+
+  transform(news: News[], search: string): News[] {
     if (!search.trim()) {
       return news;
     }

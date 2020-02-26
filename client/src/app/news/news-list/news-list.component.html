@@ -1,9 +1,5 @@
-<div *ngIf="isAdmin">
-    <app-add-form></app-add-form>
-</div>
-
 <div *ngIf="!this.hideNewsList">
-    <div *ngFor="let news of this.svcNews.getNewsList()" class="row p-2">
+    <div *ngFor="let news of this.svcNews.getNewsList() | newsFilter:search" class="row p-2">
         <div class="col-sm-4">
             <a [routerLink]="['/news', news.id]" routerLinkActive=""><img class="img-thumbnail"
                     src="{{news.image}}"></a>
@@ -18,7 +14,7 @@
                     aria-expanded="false" aria-controls="collapse{{news.id}}"></a>
             </div>
         </div>
-        <div class="col-sm-2 small">{{news.date}}</div>
+        <div class="col-sm-2 small">{{news.date| date}}</div>
         <div class="col-sm-2">
             <button [routerLink]="['/news/edit', news.id]" type="button"
                 class="btn btn-secondary btn-sm btn-block">Edit</button>
