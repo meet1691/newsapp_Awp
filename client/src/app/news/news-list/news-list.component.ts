@@ -14,13 +14,13 @@ export class NewsListComponent implements OnInit {
 
   private maxNewsQty = this.svcNews.getNewsList().length
   private currentNewsQty: number;
-  private increseQty: number;
+  private difference: number;
 
   constructor(private svcNews: NewsService,
     private svcSearch: SearchNewsService
   ) {
-    this.increseQty = 5;
-    this.currentNewsQty = this.increseQty;
+    this.difference = 5;
+    this.currentNewsQty = this.difference;
     this.isAdmin = true;
   }
 
@@ -29,8 +29,8 @@ export class NewsListComponent implements OnInit {
   }
 
   private loadMore() {
-    if (this.currentNewsQty + this.increseQty < this.maxNewsQty) {
-      this.currentNewsQty += this.increseQty;
+    if (this.currentNewsQty + this.difference < this.maxNewsQty) {
+      this.currentNewsQty += this.difference;
     } else if (this.currentNewsQty < this.maxNewsQty) {
       this.currentNewsQty = this.maxNewsQty
     }
