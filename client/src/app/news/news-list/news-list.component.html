@@ -1,25 +1,29 @@
 <div *ngIf="!this.hideNewsList">
-    <div *ngFor="let news of this.svcNews.getNewsList() | newsFilter:search" class="row p-2">
-        <div class="col-sm-4">
-            <a [routerLink]="['/news', news.id]" routerLinkActive=""><img class="img-thumbnail"
-                    src="{{news.image}}"></a>
-        </div>
-        <div class="col-sm-4">
-            <div class="module">
-                <h5>{{news.title}}</h5>
-                <p class="collapse " id="collapse{{news.id}}" aria-expanded="false">
-                    {{news.text}}
-                </p>
-                <a role="button" class="collapsed" data-toggle="collapse" href="#collapse{{news.id}}"
-                    aria-expanded="false" aria-controls="collapse{{news.id}}"></a>
+    <div *ngFor="let news of this.svcNews.getNewsList() | newsFilter:search ; let i = index" class="row p-1"
+        [attr.data-index]="i">
+        <div *ngIf="i < this.currentNewsQty" class="row">
+            <div class="col-sm-4">
+                <a [routerLink]="['/news', news.id]" routerLinkActive=""><img class="img-thumbnail"
+                        src="{{news.image}}"></a>
+            </div>
+            <div class="col-sm-4">
+                <div class="module">
+                    <h5>{{news.title}}</h5>
+                    <p class="collapse " id="collapse{{news.id}}" aria-expanded="false">
+                        {{news.text}}
+                    </p>
+                    <a role="button" class="collapsed" data-toggle="collapse" href="#collapse{{news.id}}"
+                        aria-expanded="false" aria-controls="collapse{{news.id}}"></a>
+                </div>
+            </div>
+            <div class="col-sm-2 small">{{news.date| date}}</div>
+            <div class="col-sm-2">
+                <button [routerLink]="['/news/edit', news.id]" type="button"
+                    class="btn btn-secondary btn-sm btn-block">Edit</button>
+                <button (click)="this.svcNews.remove(news.id)" type="button"
+                    class="btn btn-danger btn-sm btn-block">Delete</button>
             </div>
         </div>
-        <div class="col-sm-2 small">{{news.date| date}}</div>
-        <div class="col-sm-2">
-            <button [routerLink]="['/news/edit', news.id]" type="button"
-                class="btn btn-secondary btn-sm btn-block">Edit</button>
-            <button (click)="this.svcNews.remove(news.id)" type="button"
-                class="btn btn-danger btn-sm btn-block">Delete</button>
-        </div>
     </div>
+    <button (click)="loadMore()" class="btn btn-secondary btn-sm btn-block">Load more</button>
 </div>

@@ -17,12 +17,11 @@ export class AdminPanelComponent implements OnInit {
     private formBuilder: FormBuilder,
   ) {
     this.initForm();
-    
   }
 
   ngOnInit(): void {
-    this.svcSearch.sharedSearch.subscribe(search => this.search = search);
     this.newsSource.emit('Local')
+    this.svcSearch.sharedSearch.subscribe(search => this.search = search);
   }
 
   submitSearch(value: { title: string; }) {

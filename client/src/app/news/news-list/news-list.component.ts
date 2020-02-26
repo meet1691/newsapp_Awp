@@ -12,9 +12,15 @@ export class NewsListComponent implements OnInit {
   private isAdmin: boolean;
   private search: string;
 
+  private maxNewsQty = this.svcNews.getNewsList().length
+  private currentNewsQty: number;
+  private increseQty: number;
+
   constructor(private svcNews: NewsService,
     private svcSearch: SearchNewsService
   ) {
+    this.increseQty = 5;
+    this.currentNewsQty = this.increseQty;
     this.isAdmin = true;
   }
 
@@ -22,4 +28,11 @@ export class NewsListComponent implements OnInit {
     this.svcSearch.sharedSearch.subscribe(search => this.search = search);
   }
 
+  private loadMore() {
+    if (this.currentNewsQty + this.increseQty < this.maxNewsQty) {
+      this.currentNewsQty += this.increseQty;
+    } else if (this.currentNewsQty < this.maxNewsQty) {
+      this.currentNewsQty = this.maxNewsQty
+    }
+  }
 }
