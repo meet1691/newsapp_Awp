@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { NewsService, News } from '../../../shared/news.service';
 import { Router } from '@angular/router';
 
@@ -12,10 +12,8 @@ import { Router } from '@angular/router';
 export class AddFormComponent implements OnInit {
 
   private addForm: FormGroup;
-  private news: News;
 
   constructor(private svcNews: NewsService,
-    private formBuilder: FormBuilder,
     private router: Router
   ) {
     this.initForm()
@@ -25,18 +23,24 @@ export class AddFormComponent implements OnInit {
   }
 
   private initForm() {
-    this.addForm = this.formBuilder.group({
-      date: '',
-      type: '',
-      title: '',
-      text: '',
-      image: '',
+    this.addForm = new FormGroup({
+      date: new FormControl(''),
+      type: new FormControl(''),
+      title: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(100),
+      ])),
+      text: new FormControl('Text example'),
+      image: new FormControl(''),
     })
   }
 
   addNews(news: News) {
+    console.log(this.addForm.valid)
     news.id = this.svcNews.getNews(this.svcNews.getNewsList().length - 1).id + 1;
     this.svcNews.add(news);
+
     this.router.navigate(['/news'])
   }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NewsService, News } from '../../../shared/news.service'
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -33,7 +33,10 @@ export class EditFormComponent implements OnInit {
       id: this.news.id,
       date: this.news.date,
       type: this.news.type,
-      title: this.news.title,
+      title: [this.news.title, Validators.compose([
+        Validators.required,
+        Validators.minLength(10)
+      ])],
       image: this.news.image,
       text: this.news.text
     })

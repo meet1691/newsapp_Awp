@@ -1,14 +1,19 @@
 <form class=" text-center border-light p-5 form-horizontal" [formGroup]="addForm" (ngSubmit)="addNews(addForm.value)">
-    <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Add News</h1>
-    <input class="form-control mb-4" id="title" type="text" formControlName="title" placeholder="Title" required=""
+    <h1 class="h3 font-weight-normal" style="text-align: center">Add News</h1>
+    <div *ngIf="addForm.get('title').invalid" class="alert alert-danger">
+        Title length must be more then 10 and less then 100 symbols
+    </div>
+    <input class="form-control mb-4" id="title" type="text" formControlName="title" placeholder="Title" autofocus="">
+
+    <input class="form-control mb-4" id="image" type="text" formControlName="image" placeholder="Image url"
         autofocus="">
-    <input class="form-control mb-4" id="image" type="text" formControlName="image" placeholder="Image url" required=""
-        autofocus="">
-    <input class="form-control mb-4" id="type" type="text" formControlName="type" placeholder="Type" required=""
-        autofocus="">
+    <input class="form-control mb-4" id="type" type="text" formControlName="type" placeholder="Type" autofocus="">
     <textarea rows="8" class="form-control mb-4" id="text" type="text" formControlName="text"
         placeholder="Text..."></textarea>
+    <div *ngIf="addForm.get('title').invalid" class="alert alert-danger">
+        Title length must be more then 10 and less then 100 symbols
+    </div>
     <input class="form-control mb-4" id="date" type="date" formControlName="date">
-    <button class="btn btn-lg btn-dark btn-block mb-4" type="submit">Create</button>
+    <button class="btn btn-lg btn-dark btn-block mb-4" type="submit" [disabled]="!addForm.valid">Create</button>
 
 </form>
