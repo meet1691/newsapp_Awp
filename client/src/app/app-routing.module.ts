@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { ViewNewsComponent } from './news/view-news/view-news.component';
 import { NewsListComponent } from './news/news-list/news-list.component';
 import { EditFormComponent } from './news/admin/edit-form/edit-form.component';

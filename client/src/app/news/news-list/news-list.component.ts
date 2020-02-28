@@ -16,15 +16,13 @@ export class NewsListComponent implements OnInit {
   private currentNewsQty: number;
   private difference: number;
 
-  constructor(private svcNews: NewsService,
-    private svcSearch: SearchNewsService
-  ) {
+  constructor(private svcNews: NewsService, private svcSearch: SearchNewsService) { }
+
+  ngOnInit(): void {
     this.difference = 5;
     this.currentNewsQty = this.difference;
     this.isAdmin = true;
-  }
 
-  ngOnInit(): void {
     this.svcSearch.sharedSearch.subscribe(search => this.search = search);
   }
 

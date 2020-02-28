@@ -1,11 +1,11 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+
 import { SearchNewsService } from 'src/app/shared/search-news.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-panel',
   templateUrl: './admin-panel.component.html',
-  styleUrls: ['./admin-panel.component.scss']
 })
 export class AdminPanelComponent implements OnInit {
 
@@ -15,11 +15,10 @@ export class AdminPanelComponent implements OnInit {
 
   constructor(private svcSearch: SearchNewsService,
     private formBuilder: FormBuilder,
-  ) {
-    this.initForm();
-  }
+  ) { }
 
   ngOnInit(): void {
+    this.initForm();
     this.newsSource.emit('Local')
     this.svcSearch.sharedSearch.subscribe(search => this.search = search);
   }
@@ -35,7 +34,6 @@ export class AdminPanelComponent implements OnInit {
   }
 
   changeNewsSource(newsSource: string): void {
-    console.log(newsSource);
     this.newsSource.emit(newsSource)
   }
 }

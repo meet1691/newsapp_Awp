@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { NewsService, News } from '../../../shared/news.service';
 import { Router } from '@angular/router';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+
+import { NewsService, News } from '../../../shared/news.service';
 
 @Component({
   selector: 'app-add-form',
   templateUrl: './add-form.component.html',
-  styleUrls: ['./add-form.component.scss']
 })
 
 export class AddFormComponent implements OnInit {
@@ -15,11 +15,10 @@ export class AddFormComponent implements OnInit {
 
   constructor(private svcNews: NewsService,
     private router: Router
-  ) {
-    this.initForm()
-  }
+  ) {}
 
   ngOnInit() {
+    this.initForm()
   }
 
   private initForm() {
@@ -37,7 +36,6 @@ export class AddFormComponent implements OnInit {
   }
 
   addNews(news: News) {
-    console.log(this.addForm.valid)
     news.id = this.svcNews.getNews(this.svcNews.getNewsList().length - 1).id + 1;
     this.svcNews.add(news);
 
