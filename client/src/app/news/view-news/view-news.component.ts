@@ -11,12 +11,11 @@ export class ViewNewsComponent implements OnInit{
 
   private news: News
 
-  constructor(svcNews: NewsService, route: ActivatedRoute) {
-    let id = route.snapshot.paramMap.get('id');
-    this.news = svcNews.getNews(Number(id));
+  constructor(private svcNews: NewsService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    
+    let id = this.route.snapshot.paramMap.get('id');
+    this.news = this.svcNews.getNews(Number(id));
   }
 }

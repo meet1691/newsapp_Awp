@@ -15,6 +15,8 @@ export class NewsListComponent implements OnInit {
   private maxNewsQty = this.svcNews.getNewsList().length
   private currentNewsQty: number;
   private difference: number;
+  showShortDesciption: Map<number, boolean>;
+
 
   constructor(private svcNews: NewsService, private svcSearch: SearchNewsService) { }
 
@@ -24,6 +26,8 @@ export class NewsListComponent implements OnInit {
     this.isAdmin = true;
 
     this.svcSearch.sharedSearch.subscribe(search => this.search = search);
+
+    this.initMap();
   }
 
   private loadMore() {
@@ -33,4 +37,16 @@ export class NewsListComponent implements OnInit {
       this.currentNewsQty = this.maxNewsQty
     }
   }
+
+  private initMap() {
+    this.showShortDesciption = new Map<number, boolean>();
+    this.svcNews.getNewsList().forEach(news => {
+      this.showShortDesciption.set(news.id, false)
+    });
+  }
+
+  private alterDescriptionText(id: number) {
+    this.showShortDesciption.set(id, !this.showShortDesciption.get(id))
+  }
+
 }

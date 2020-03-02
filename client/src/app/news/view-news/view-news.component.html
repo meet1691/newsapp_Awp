@@ -1,12 +1,12 @@
-<h1 class="text-center">{{this.news.title}}</h1>
+<h1 class="text-center">{{news.title}}</h1>
 
 <div class="d-flex justify-content-center">
-    <img src="{{this.news.image}}" class="img-fluid rounded col-lg-8">
+    <img src="{{news.image}}" class="img-fluid rounded col-lg-8">
 </div>
 <div class="blog-main">
     <div class="blog-post">
-        <p class="blog-post-meta">{{this.news.date | date}}</p>
-        {{this.news.text}}
+        <p class="blog-post-meta">{{news.date | date}}</p>
+        {{news.text}}
     </div>
 
 </div>
